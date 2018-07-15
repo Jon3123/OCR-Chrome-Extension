@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="orcrad.js"></script>
+  </head>
+  <body>
+    <script>
+      // Set up message event handler:\
+	  console.log("console for sandbox");
+	  //window.alert("test");
+      window.addEventListener('message', function(event) {
+		console.log("message read");
+		 var message = {
+			command: 'OCR',
+			context: {URL: [imageURL]}
+		  };
+  
+		window.contentWindow.postMessage(message, event.origin);
+		/*var command = event.data.command;
+        var url = event.data.imageURL || null;
+		var ocrtext = null;
+		if (url != null){
+			ocrtext = OCRAD(url);
+		}
+        switch(command) {
+          case 'OCR':
+            event.source.postMessage({
+              Text: 'HI'
+            }, event.origin);
+            break;
+        }
+      }*/);
+    </script>
+  </body>
+</html>

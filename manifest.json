@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+
+  "name": "OCR",
+  "description": "OCR",
+  "version": "1.0",
+  "sandbox":{
+	"pages":["box.html"]
+	},
+  "content_scripts":[
+	{
+		"matches":[
+			"<all_urls>"
+		],
+		"js":["receiver.js"]
+	}
+  ],
+
+  "browser_action": {
+   "default_popup": "popup.html",
+   "default_icon": "icon.png"
+  },
+  "permissions": [
+	"http://*/*","https://*/*",
+	"activeTab",
+	"clipboardWrite",
+	"contextMenus",
+	"tabs"
+	
+   ],
+   
+   "background": {
+        "scripts":
+			["ocrad.js","background.js"]
+
+    }
+}

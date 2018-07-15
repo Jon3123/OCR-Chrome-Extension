@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="ocrad.js"></script>
+  </head>
+  <body>
+    <script>
+	  //Listening for messages from background.js
+		window.addEventListener('message', function(event) {
+			if (event.data.action == 'OCR_Request'){
+				//Data URL rec...
+				var imgData = event.data.context.img;
+				var img = new Image;
+				img.onload = function(){
+					///OCR text
+					var otext = OCRAD(img);
+					//reply
+					var reply = {
+						action: 'OCR_Data',
+						context: {ocr: otext}
+					};
+					
+					 event.source.postMessage(reply,event.origin);
+				};
+				img.src = imgData;
+			}	
+		});
+    </script>
+  </body>
+</html>
